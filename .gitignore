@@ -1,0 +1,15 @@
+# no python venv folders
+venv
+
+# no local resources
+scans
+
+# no ide stuff
+.vscode
+
+# no train artifacts
+*lstm*
+*box*
+
+# no local .env
+.env

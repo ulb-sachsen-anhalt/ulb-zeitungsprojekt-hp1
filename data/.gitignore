@@ -1,0 +1,2 @@
+# do not commit model files
+*.traineddata
