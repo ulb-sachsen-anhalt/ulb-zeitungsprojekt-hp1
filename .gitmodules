@@ -1,3 +1,0 @@
-[submodule "tesstrain"]
-	path = tesstrain
-	url = git@github.com:tesseract-ocr/tesstrain.git
