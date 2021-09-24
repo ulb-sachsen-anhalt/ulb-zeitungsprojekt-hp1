@@ -1,18 +1,33 @@
-# Training Data Zeitungsdigitalisierung ULB
+# Training Data Zeitungsdigitalisierung HP I
 
-Data and workflow of the project "Zeitungsdigitalisierung Hauptphase I" at ULB Sachsen-Anhalt.
+Data of the DFG-Project "Zeitungsdigitalisierung Hauptphase I" at University and States Library Saxony-Anhalt (2019-2021).
 
-Includes [tesseract-ocr/tesstrain](https://github.com/tesseract-ocr/tesstrain) as submodule to do the actual tesseract model training via `lstmtraining`.
+In the progress of the project, there were 550.000 newspaper pages ocr-ed, at first with standard `frk+deu` model config. Finally, after the training process, all pages again with the final training model.
 
-Actual training data sets are located in `data` - subfolder, organized in subfolders for each newspaper's PPN respectively.
+OCR was done with Tesseract 4.x, training used a slighty adopted version of tesstrain.
 
-## Installation
+## Training data
 
-### Prerequisities
+Training data pairs are located in `data` - subfolder. They  consist of more than 16.000 line images (tif-format) and corresponding textual groundtruth transcriptions.
 
-First of all, you need of course a tesseract installation, since tesstrain is like a middle-ware to run the actual training with tesseract itself. Please install tesseract from `ppa:alex-p/tesseract-ocr` or compile yourself. The training runs at ULB started with tesseract 4.1.1.
+*Attenzione*  
+Downloading / cloning this repository might take some time depending on your network connection!
 
-Next, we need a base model to start our training from.
+## Additional resources
+
+Additional resources can be found inside the `resources` directory. Besides rudimentary `*.number` and `.punc` files it also contains the `*.wordlist` file that might be used final `*. traineddata`.
+
+The wordlist contains more than 25.000 entries (double checked). Feel free to use it as extension for custom models related to german historical newspapers (1870-1945).
+
+Further, it includes several Tesseract 4 unicharset-files, grabbed from <https://github.com/tesseract-ocr/langdata_lstm>.
+
+## Training
+
+### Installation Prerequisities
+
+First of all, you need a tesseract installation, since tesstrain is like a middle-ware to run the actual training with tesseract's `lstmtrain` itself. Please install tesseract from `ppa:alex-p/tesseract-ocr` or compile yourself. The training at ULB used tesseract 4.x
+
+Next, get a base model to start from.
 
 * `frk`: <https://github.com/tesseract-ocr/tessdata_best/raw/master/frk.traineddata>
 * `Fraktur`: <https://github.com/tesseract-ocr/tessdata_best/raw/master/script/Fraktur.traineddata>
@@ -21,24 +36,11 @@ Next, we need a base model to start our training from.
 Please note:  
 _The language configuration files that can be installed from official ubuntu 18.04-Repository **do not** fit for training!_
 
-Finally, clone this repository: `git clone --recursive git@github.com:ulb-sachsen-anhalt/ulb-zeitungsprojekt-hp1.git` and switch into the project root folder.
+### Run Training
 
-### Setup
+*Please note*  
+Base model configurations have to be placed in the tesseract `tessdata` configuration location, i.e. `/usr/share/tesseract-ocr/4.00/tessdata/` for tesseract 4.x.
 
-In order to get the training process up and running, place an `.env`-file in the project root directory with the following configurations:
+The `TRAIN_DATA_PATH` must be an absolute local path. Feel free to use the training pairs from the `data`-folder or use your own.
 
-```shell
-TRAIN_BASE_MODEL=<name-of-base-model, i.e. "frk">
-TRAIN_ITERATIONS=<number-of-training-iterations>
-TRAIN_MODEL=<name-of-resulting-model>
-TRAIN_DATA_PATH=<absolute-path-of-folder-with-training-data>
-```
-
-These variables are being read by the training-scripts.  
-Please note, that the base model configurations have to be placed in the tesseract `tessdata` configuration location, i.e. `/usr/share/tesseract-ocr/4.00/tessdata/` for tesseract 4.x.
-
-The `TRAIN_DATA_PATH` must be an absolute local path. Feel free to use the ULB training datasets from the `data`-folder or use your own.
-
-## Run Training
-
-Execute `./run-training-local.sh`.
+Start training by executing `./train-local.sh`.
