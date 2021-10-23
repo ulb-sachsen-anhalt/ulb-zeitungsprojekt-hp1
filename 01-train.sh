@@ -21,7 +21,7 @@ TRAIN_FROM_MODEL=$3
 # max number of iterations to go
 # as long as target error rate is not reached
 TRAIN_MAX_ITERATIONS=$4
-# ration split data into train (=tesstrain defaul: 0.90) 
+# ration split data into train (=tesstrain default: 0.90)
 # reminder is used to test current model within iteration
 RATIO_TRAIN=$5
 # image consumption used by tesseract's lstmtrain

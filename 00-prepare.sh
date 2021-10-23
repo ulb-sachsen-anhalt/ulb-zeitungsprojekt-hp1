@@ -133,7 +133,7 @@ N_IMG_PNG=$(find "${TRAIN_PATH_DATA}" -name "*.png" | wc -l)
 N_TOTAL=$((N_IMG_TIF + N_IMG_PNG))
 if [[ $N_TOTAL != "$N_TXT" ]]; then
     echo -e "
-        [ERROR] detected missmatch: '${N_TOTAL}'(tif+png) != '${N_TXT}'(txt), abort pipeline!
+        [ERROR] detected mismatch: '${N_TOTAL}'(tif+png) != '${N_TXT}'(txt), abort pipeline!
     "
     exit 1
 else
@@ -164,7 +164,7 @@ done
 # prepare: check training artifacts
 EXT_BOX="*.box"
 EXT_LST="*.lstmf"
-echo "[INFO] inspect preceeding training artifacs from ${TRAIN_PATH_DATA}"
+echo "[INFO] inspect preceding training artifacs from ${TRAIN_PATH_DATA}"
 N_BOX=$(find "${TRAIN_PATH_DATA}" -name "${EXT_BOX}" | wc -l)
 N_LSMTF=$(find "${TRAIN_PATH_DATA}" -name "${EXT_LST}" | wc -l)
 echo "[INFO] ${N_BOX} '${EXT_BOX}' and ${N_LSMTF} '${EXT_LST}' files present"
