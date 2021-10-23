@@ -4,7 +4,7 @@ Data of the DFG-Project "Zeitungsdigitalisierung Hauptphase I" at University and
 
 In the progress of the project, there were 550.000 newspaper pages ocr-ed, at first with standard `frk+deu` model config. Finally, after the training process, all pages again with the final training model.
 
-OCR was done with Tesseract 4.x, training used a slighty adopted version of tesstrain.
+OCR was done with Tesseract 4.x, training used a slightly adopted version of tesstrain.
 
 ## Training data
 
